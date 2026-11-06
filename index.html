@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#16324f">
+  <meta name="description" content="Care Concierge – a proactive, voice-first AI agent for seniors that acts within a digital Vollmacht. DFC #7 prototype.">
+  <title>Care Concierge</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <div id="stage">
+    <div id="phone">
+      <header class="topbar">
+        <div class="brand"><span class="logo">CC</span><span>Care Concierge</span></div>
+        <div class="ai-badge" title="Disclosure: this is an AI system (EU AI Act Art. 50)">🤖 AI assistant</div>
+      </header>
+      <div id="caption" role="status" aria-live="polite"></div>
+      <nav class="tabs" aria-label="Views">
+        <button data-view="senior" class="active">Me<span class="badge" id="badge-senior"></span></button>
+        <button data-view="health">Health<span class="badge" id="badge-health"></span></button>
+        <button data-view="relative">Anna<span class="badge" id="badge-relative"></span></button>
+        <button data-view="log">Log</button>
+        <button data-view="vollmacht">Settings</button>
+      </nav>
+      <main id="view" tabindex="-1"></main>
+
+      <div id="dock">
+        <form id="typebox" class="ask" data-form="senior"><input name="q" placeholder="Type instead of speaking…" autocomplete="off"><button class="btn btn-primary">Send</button></form>
+        <div class="dock-row">
+          <button class="kbd" data-act="type" aria-label="Type instead">⌨</button>
+          <button id="mic" data-act="mic" aria-label="Tap and speak"><span class="mic-icon">🎙</span><span id="mic-label">Tap and speak</span></button>
+          <button id="stop" data-act="stop" aria-label="Stop everything">■ STOP</button>
+        </div>
+      </div>
+      <div id="toast" role="status" aria-live="polite"></div>
+      <div id="modal"></div>
+    </div>
+
+    <aside id="demo">
+      <button class="demo-handle" data-act="demo-toggle">Demo controls</button>
+      <div class="demo-body">
+        <h3>Demo controls</h3>
+        <p class="small">Simulated time: <b id="demo-clock"></b><br><span class="muted" id="clock"></span></p>
+        <div class="grid">
+          <button class="btn" data-act="hour">+1 hour</button>
+          <button class="btn" data-act="day">+1 day</button>
+          <button class="btn btn-primary" data-act="next">⏭ Next event</button>
+        </div>
+        <h4>Make something happen</h4>
+        <div class="grid">
+          <button class="btn" data-act="trigger" data-type="referral">📨 Referral letter arrives</button>
+          <button class="btn" data-act="trigger" data-type="practice_cancelled">❌ Practice cancels</button>
+          <button class="btn" data-act="trigger" data-type="treatment_start">💊 Treatment plan letter</button>
+          <button class="btn" data-act="unlawful">⚖ Unlawful request</button>
+          <button class="btn" data-act="distress">🛟 Distress phrase</button>
+        </div>
+        <h4>Health &amp; reminders</h4>
+        <div class="grid">
+          <button class="btn" data-act="trigger" data-type="dose">💊 Tablets due now</button>
+          <button class="btn" data-act="trigger" data-type="missed">⏰ Missed dose</button>
+          <button class="btn" data-act="trigger" data-type="procedure">🩸 Procedure tomorrow</button>
+          <button class="btn" data-act="trigger" data-type="apptday">📅 Live through next appointment</button>
+        </div>
+        <h4>Story to show the jury</h4>
+        <ol class="small">
+          <li><b>⏭ Next event</b> – the referral arrives; the agent books the cardiologist and a car on its own (🟡) and tells Anna.</li>
+          <li>Open <b>Log → Why?</b> – see the reason, the rule check and the AI-to-AI call transcript.</li>
+          <li>Say <i>"undo"</i> or press <b>STOP</b> – Margaret stays in charge.</li>
+          <li><b>💊 Treatment letter</b> – the Document Assistant drafts forms and waits for a 🔴 OK.</li>
+          <li><b>Settings</b> – switch off "Book rides" and run it again: the rule engine blocks it.</li>
+          <li><b>💊 Tablets due now</b> → say <i>"taken"</i>. Then <b>⏰ Missed dose</b>: Anna is told, Peter is not (Margaret's choice). Say <i>"can I take two?"</i> – the agent refuses to change a dose and offers to ask the doctor.</li>
+          <li><b>📅 Live through next appointment</b> – contacts get before / during / after messages; open <b>Health</b> to see the new report in the ePA.</li>
+          <li>Say <i>"which cardiologists are there?"</i>, then <i>"book Dr. Hoffmann"</i> – free choice of doctor.</li>
+        </ol>
+        <p class="small muted">Agent brain: <span id="brain-name"></span> · all data is fictional.</p>
+        <button class="btn wide" data-act="restart">↺ Restart demo</button>
+      </div>
+    </aside>
+  </div>
+
+  <script src="js/core.js"></script>
+  <script src="js/world.js"></script>
+  <script src="js/services.js"></script>
+  <script src="js/policy.js"></script>
+  <script src="js/agent.js"></script>
+  <script src="js/health.js"></script>
+  <script src="js/brain.js"></script>
+  <script src="js/proactive.js"></script>
+  <script src="js/voice.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
